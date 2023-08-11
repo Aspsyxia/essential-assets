@@ -6,7 +6,7 @@ namespace Dialogue
     public class Dialogue : ScriptableObject
     {
         public string[] dialogueContributors;
-        public string[] sentences;
         public Sprite[] contributorsImages;
+        public string[] sentences;
     }
 }

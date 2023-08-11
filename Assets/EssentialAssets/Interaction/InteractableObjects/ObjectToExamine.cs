@@ -11,9 +11,9 @@ namespace Interaction
             GetComponent<DialogueTrigger>().TriggerDialogue();
         }
 
-        public void GetInteractionPrompt()
+        public KeyCode GetInteractionPrompt()
         {
-            throw new System.NotImplementedException();
+            return KeyCode.E;
         }
     }
 }

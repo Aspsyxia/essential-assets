@@ -2,12 +2,14 @@
 
 namespace Core
 {
+    /// <summary>
+    /// Marks all MonoBehaviours that take player input.
+    /// </summary>
     public abstract class InputAction: MonoBehaviour
     {
         /// <summary>
-        /// Marks all MonoBehaviours that take player input.
+        /// Activates or deactivates InputAction based on given bool value.
         /// </summary>
-        
         protected bool IsActive = true;
 
         public virtual void Enable()

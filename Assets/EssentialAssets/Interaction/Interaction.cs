@@ -1,12 +1,20 @@
+using System;
 using UnityEngine;
 using Core;
 
 namespace Interaction
 {
+    /// <summary>
+    /// Allows GameObject with this script attached to interact with other GameObjects using IInteractable interface.
+    /// </summary>
     internal class Interaction : InputAction
     {
         [Header("Specification")]
         [SerializeField] private float interactionRange = 3f;
+        [SerializeField] private Transform interactionOrigin;
+
+        public static event Action<string> InteractionPossible;
+        public static event Action InteractionStop;
         
         private void Update()
         {
@@ -16,11 +24,13 @@ namespace Interaction
         
         private void InteractionCheck()
         {
-            var forward = transform.TransformDirection(Vector3.forward);
-
-            if (!Physics.Raycast(transform.position, forward, out var hit, interactionRange)) return;
-            if (!hit.collider.TryGetComponent(out IInteractable interactable)) return;
-            if(Input.GetKeyDown(KeyCode.E)) interactable.Interact();
+            if (Physics.Raycast(interactionOrigin.position, interactionOrigin.forward, out var hit, interactionRange))
+            {
+                if (!hit.collider.TryGetComponent(out IInteractable interactable)) return;
+                InteractionPossible?.Invoke($"interact - {interactable.GetInteractionPrompt().ToString()}");
+                if (Input.GetKeyDown(interactable.GetInteractionPrompt())) interactable.Interact();
+            }
+            else InteractionStop?.Invoke();
         }
     }
 }

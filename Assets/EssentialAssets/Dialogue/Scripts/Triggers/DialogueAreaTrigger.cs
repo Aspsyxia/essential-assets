@@ -26,8 +26,7 @@ namespace Dialogue
                     FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
                     break;
                 case DialogueType.Tip:
-                    FindObjectOfType<DialogueManager>().StartTip(dialogue); 
-                    gameObject.GetComponent<Collider>().enabled = false;
+                    FindObjectOfType<DialogueManager>().StartTip(dialogue);
                     break;
             }
             

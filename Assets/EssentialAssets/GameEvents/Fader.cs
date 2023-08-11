@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace Core
 {
+    /// <summary>
+    /// Allows to smoothly show or hide UI image objects.
+    /// </summary>
     public class Fader : MonoBehaviour
     {
         [SerializeField] private Color baseColor = Color.black;
@@ -18,17 +21,25 @@ namespace Core
         
         private Color _tempColor;
 
+        /// <summary>
+        /// Instantly hide given image.
+        /// </summary>
+        /// <param name="image">image to hide</param>
         public void HideObject(Image image)
         {
             _tempColor = image.color;
             _tempColor.a = minVisibility;
             image.color = _tempColor;
         }
-
+        
+        /// <summary>
+        /// Smoothly hide given image.
+        /// </summary>
+        /// <param name="image">image to hide</param>
         public IEnumerator FadeOut(Image image)
         {
             _tempColor = image.color;
-
+            
             while (_tempColor.a > minVisibility)
             {
                 _tempColor.a -= fadingOutSpeed;
@@ -37,6 +48,10 @@ namespace Core
             }
         }
 
+        /// <summary>
+        /// Smoothly show given image.
+        /// </summary>
+        /// <param name="image">image to show</param>
         public IEnumerator FadeIn(Image image)
         {
             while (_tempColor.a < maxVisibility)

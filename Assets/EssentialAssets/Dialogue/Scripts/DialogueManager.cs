@@ -1,9 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using Core;
 
 namespace Dialogue
 {
@@ -12,7 +11,6 @@ namespace Dialogue
         [Header("References")]
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text dialogueText;
-        [SerializeField] private Image image;
         [SerializeField] private Canvas dialogueCanvas;
         
         [Header("Specification")]
@@ -21,53 +19,54 @@ namespace Dialogue
         
         private Queue<string> _sentences;
         private List<string> _dialogueContributors;
-        private List<Sprite> _dialogueContributorsImages;
         private Coroutine _activeCoroutine;
-        private PlayerStatus _player;
+        
+        public static event Action DialogueStart;
+        public static event Action DialogueEnd;
+        
+        internal static event Action<Dialogue> PassDialogue;
+        internal static event Action<int> ImageSwitch;
 
         private void Start()
         {
             _sentences = new Queue<string>();
             dialogueCanvas.enabled = false;
-            _player = FindObjectOfType<PlayerStatus>();
         }
 
         public void StartDialogue(Dialogue dialogue)
         {
-            DialoguePreActions(true);
+            DialoguePreActions(dialogue, true);
             _activeCoroutine = StartCoroutine(PrepareDialogueDisplay(dialogue));
         }
         
         public void StartDialogue(Dialogue dialogue, int state)
         {
-            DialoguePreActions(true);
+            DialoguePreActions(dialogue, true);
             _activeCoroutine = StartCoroutine(PrepareDialogueDisplay(dialogue, state));
         }
 
         public void StartTip(Dialogue dialogue)
         {
-            DialoguePreActions(false);
-            
+            DialoguePreActions(dialogue, false);
             foreach (var sentence in dialogue.sentences) _sentences.Enqueue(sentence);
             nameText.text = dialogue.dialogueContributors[0];
-            image.sprite = dialogue.contributorsImages[0];
-            
+            if (dialogueWithImages) ImageSwitch?.Invoke(0);
             _activeCoroutine = StartCoroutine(DisplayTip());
         }
         
-        private void DialoguePreActions(bool playerStop)
+        private void DialoguePreActions(Dialogue dialogue, bool playerStop)
         {
             if (_activeCoroutine != null) StopAllCoroutines();
             _sentences.Clear();
             dialogueCanvas.enabled = true;
-            if (playerStop) _player.DisablePlayerControls();
+            PassDialogue?.Invoke(dialogue);
+            if (playerStop) DialogueStart?.Invoke();
         }
         
         private IEnumerator PrepareDialogueDisplay(Dialogue dialogue)
         {
             foreach (var sentence in dialogue.sentences) _sentences.Enqueue(sentence);
             _dialogueContributors = new List<string>(dialogue.dialogueContributors);
-            _dialogueContributorsImages = new List<Sprite>(dialogue.contributorsImages);
             yield return DisplayDialogue();
         }
         
@@ -75,7 +74,7 @@ namespace Dialogue
         {
             var sentence = dialogue.sentences[state];
             nameText.text = dialogue.dialogueContributors[0];
-            image.sprite = dialogue.contributorsImages[0];
+            if (dialogueWithImages) ImageSwitch?.Invoke(0);
             yield return TypeOneSentence(sentence);
         }
         
@@ -86,7 +85,7 @@ namespace Dialogue
                 var sentence = _sentences.Dequeue();
                 var sentenceInfo = sentence.Split(';');
                 nameText.text = _dialogueContributors[int.Parse(sentenceInfo[1])];
-                image.sprite = _dialogueContributorsImages[int.Parse(sentenceInfo[1])];
+                if (dialogueWithImages) ImageSwitch?.Invoke(int.Parse(sentenceInfo[1]));
                 yield return TypeSentence(sentenceInfo[0]);
                 yield return new WaitUntil(() => DialogueLineSkip());
             }
@@ -128,7 +127,7 @@ namespace Dialogue
         private void EndDialogue()
         {
             dialogueCanvas.enabled = false;
-            _player.EnablePlayerControls();
+            DialogueEnd?.Invoke();
         }
 
         private static bool DialogueLineSkip()

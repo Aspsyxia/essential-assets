@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 3532484861927092496}
   - component: {fileID: 3135349874381044890}
   - component: {fileID: 5464477918732272300}
+  - component: {fileID: 3844914410261643498}
+  - component: {fileID: -1401721834850215786}
   m_Layer: 0
   m_Name: TankPlayerController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,6 +103,32 @@ MonoBehaviour:
   jumpingHeight: 10
   fallingSpeed: 0
   playerCamera: {fileID: 6934906486704004466}
+--- !u!114 &3844914410261643498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3145552023928609780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445df1a5250d7934b8abd821b61a536d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 3
+  interactionOrigin: {fileID: 5996153837461800762}
+--- !u!114 &-1401721834850215786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3145552023928609780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed8fb38ef0f40b7bf8944b74ffe998d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2949915468292705727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109,6 +137,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3931149008297897987}
     m_Modifications:
+    - target: {fileID: 290661369724274204, guid: 4281542a074a22d489dbc899e08fb524, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4651352996331614833, guid: 4281542a074a22d489dbc899e08fb524, type: 3}
       propertyPath: m_Name
       value: PlayerPlaceholder

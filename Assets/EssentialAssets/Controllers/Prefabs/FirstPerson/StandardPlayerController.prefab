@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 3532484861927092496}
   - component: {fileID: 3135349874381044890}
   - component: {fileID: 6982211108419236248}
+  - component: {fileID: 7943855133207875768}
+  - component: {fileID: 2699447737644072108}
   m_Layer: 0
   m_Name: StandardPlayerController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +36,7 @@ Transform:
   - {fileID: 5220314449468124869}
   - {fileID: 353635189261851756}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &3532484861927092496
 CharacterController:
@@ -99,8 +101,34 @@ MonoBehaviour:
   rotateSpeed: 90
   tankControls: 0
   jumpingHeight: 10
-  fallingSpeed: 0
+  fallingSpeed: 0.05
   playerCamera: {fileID: 8897259932356195469}
+--- !u!114 &7943855133207875768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3145552023928609780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445df1a5250d7934b8abd821b61a536d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 3
+  interactionOrigin: {fileID: 5220314449468124869}
+--- !u!114 &2699447737644072108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3145552023928609780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed8fb38ef0f40b7bf8944b74ffe998d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7675335522277359446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,6 +208,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3931149008297897987}
     m_Modifications:
+    - target: {fileID: 290661369724274204, guid: 4281542a074a22d489dbc899e08fb524, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4651352996331614833, guid: 4281542a074a22d489dbc899e08fb524, type: 3}
       propertyPath: m_Name
       value: PlayerPlaceholder

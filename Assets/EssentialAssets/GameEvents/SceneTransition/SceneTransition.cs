@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ namespace Core
         private Fader _fader;
         private static Image _screenOverlay;
         private static SceneTransition _instance;
+        public static event Action SceneChange;
 
         private void Awake()
         {
@@ -22,12 +24,12 @@ namespace Core
 
         public static void TriggerSceneChange(int nextSceneIndex)
         {
+            SceneChange?.Invoke();
             _instance.StartCoroutine(ChangeScene(nextSceneIndex));
         }
         
         private static IEnumerator ChangeScene(int nextSceneIndex)
         {
-            FindObjectOfType<PlayerStatus>().DisablePlayerControls();
             yield return _instance._fader.FadeIn(_screenOverlay);
             yield return SceneManager.LoadSceneAsync(nextSceneIndex);
             yield return _instance._fader.FadeOut(_screenOverlay);

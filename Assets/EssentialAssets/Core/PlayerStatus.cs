@@ -1,46 +1,37 @@
 ﻿using System.Collections.Generic;
-using CameraBehaviour;
+using Dialogue;
 using UnityEngine;
 
 namespace Core
 {
+    /// <summary>
+    /// Class that manages player's current status. It is important for things such as interactions.
+    /// </summary>
     public class PlayerStatus: MonoBehaviour
     {
-        [SerializeField] private PlayerPerspective perspective;
-
-        private enum PlayerPerspective
-        {
-            FirstPerson,
-            ThirdPerson,
-            FixedAngles
-        }
-
         private List<InputAction> _inputActions;
 
         private void Start()
         {
-            _inputActions = perspective switch
-            {
-                PlayerPerspective.FirstPerson => new List<InputAction>(GetComponents<InputAction>()) {FindObjectOfType<HeadBobbing>()},
-                PlayerPerspective.ThirdPerson => new List<InputAction>(GetComponents<InputAction>()) {FindObjectOfType<CameraFollow>()},
-                PlayerPerspective.FixedAngles => new List<InputAction>(GetComponents<InputAction>()),
-                _ => _inputActions
-            };
+            SceneTransition.SceneChange += DisablePlayerControls;
+            DialogueManager.DialogueStart += DisablePlayerControls;
+            DialogueManager.DialogueEnd += EnablePlayerControls;
+
+            _inputActions = new List<InputAction>(FindObjectsOfType<InputAction>());
         }
 
-        public void DisablePlayerControls()
+        private void DisablePlayerControls()
         {
             foreach (var inputAction in _inputActions) inputAction.Disable();
         }
 
-        public void EnablePlayerControls()
+        private void EnablePlayerControls()
         {
             foreach (var inputAction in _inputActions) inputAction.Enable();
         }
 
         public void PlayerDie()
         {
-            //settrigger(deatH)
             DisablePlayerControls();
         }
     }

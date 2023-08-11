@@ -1,8 +1,16 @@
+using UnityEngine;
+
 namespace Interaction
 {
     public interface IInteractable
     {
+        /// <summary>
+        /// Interaction behaviour.
+        /// </summary>
         public void Interact();
-        public void GetInteractionPrompt();
+        /// <summary>
+        /// Returns Key that triggers interaction.
+        /// </summary>
+        public KeyCode GetInteractionPrompt();
     }
 }
