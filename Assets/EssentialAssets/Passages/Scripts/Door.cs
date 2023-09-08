@@ -15,9 +15,10 @@ namespace Interaction
         [SerializeField] private SlideDirection slideDirection;
         [SerializeField][Range(0f, 10f)] private float slideDistance;
         [SerializeField][Range(0f, 10f)] private float slideSpeed = 1.5f;
-        
+
         [Header("Standard door")]
         [SerializeField][Range(0f, 360f)] private float openingAngle = 95f;
+        [SerializeField][Range(0f, 50f)] private float openingSpeed = 1f;
         [SerializeField][Range(0f, 1f)] private float openingDelay = 0.1f;
 
 
@@ -39,10 +40,15 @@ namespace Interaction
         private Vector3 _doorAngles;
         private Coroutine _activeCoroutine;
 
+        private float _startAngle;
+        private float _finalAngle;
+        
         private void Start()
         {
-            _startPosition = transform.localPosition;
-            _doorAngles = transform.localEulerAngles;
+            var doorTransform = transform;
+            _startPosition = doorTransform.localPosition;
+            _doorAngles = doorTransform.localEulerAngles;
+            DetermineAngles();
         }
 
         private void DetermineOpeningAction()
@@ -55,6 +61,15 @@ namespace Interaction
             };
         }
 
+        private void DetermineAngles()
+        {
+            _startAngle = transform.localEulerAngles.y;
+            if (_startAngle >= 0)
+                _finalAngle = _startAngle + openingAngle;
+            else
+                _finalAngle = _startAngle - openingAngle;
+        }
+
         private IEnumerator DetermineRotationDirection()
         {
             if (_isOpen) yield return RotateToClose();
@@ -64,22 +79,21 @@ namespace Interaction
         private IEnumerator RotateToOpen()
         {
             _isOpen = true;
-            while (_doorAngles.y < openingAngle)
+            while (_doorAngles.y < _finalAngle)
             {
-                _doorAngles.y += 4f;
-                gameObject.transform.rotation = Quaternion.Euler(_doorAngles);
+                _doorAngles.y += openingSpeed;
+                transform.rotation = Quaternion.Euler(_doorAngles);
                 yield return new WaitForSeconds(openingDelay * Time.deltaTime);
             }
-
         }
 
         private IEnumerator RotateToClose()
         {
             _isOpen = false;
-            while (_doorAngles.y > 0f)
+            while (_doorAngles.y > _startAngle)
             {
-                _doorAngles.y -= 3f;
-                gameObject.transform.rotation = Quaternion.Euler(_doorAngles);
+                _doorAngles.y -= openingSpeed;
+                transform.rotation = Quaternion.Euler(_doorAngles);
                 yield return new WaitForSeconds(openingDelay * Time.deltaTime);
             }
         }

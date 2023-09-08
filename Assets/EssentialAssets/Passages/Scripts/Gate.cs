@@ -3,7 +3,10 @@ using UnityEngine;
 
 namespace Passages
 {
-    public class Passage : MonoBehaviour, IInteractable
+    /// <summary>
+    /// A type of passage that allows to add specific opening animation.
+    /// </summary>
+    public class UniquePassage : MonoBehaviour, IInteractable
     {
         public void Interact()
         {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Dialogue;
+using Passages;
 using UnityEngine;
 
 namespace Core
@@ -14,6 +15,8 @@ namespace Core
         private void Start()
         {
             SceneTransition.SceneChange += DisablePlayerControls;
+            ObjectTeleport.Teleporting += DisablePlayerControls;
+            ObjectTeleport.DoneTeleporting += EnablePlayerControls;
             DialogueManager.DialogueStart += DisablePlayerControls;
             DialogueManager.DialogueEnd += EnablePlayerControls;
 
