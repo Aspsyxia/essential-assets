@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Interaction;
+using Core;
 
 namespace Dialogue
 {

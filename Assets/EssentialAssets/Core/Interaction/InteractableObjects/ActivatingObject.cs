@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using Core;
 
-namespace Interaction
+namespace Core
 {
     [RequireComponent(typeof(SpawnObject))]
     public class ActivatingObject: ObjectToExamine

@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
-using Core;
 
-namespace Interaction
+namespace Core
 {
     /// <summary>
     /// Allows GameObject with this script attached to interact with other GameObjects using IInteractable interface.

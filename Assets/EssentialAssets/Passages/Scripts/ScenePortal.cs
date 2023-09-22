@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using Core;
-using Interaction;
 
 namespace Passages
 {

@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using Core;
 
-namespace Interaction
+namespace Passages
 {
     /// <summary>
     /// Marks objects as doors that can be opened by interacting with them.

@@ -1,8 +1,7 @@
+using UnityEngine;
 using System;
 using System.Collections;
 using Core;
-using Interaction;
-using UnityEngine;
 
 namespace Passages
 {

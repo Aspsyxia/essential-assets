@@ -1,7 +1,7 @@
-using Dialogue;
-using Interaction;
-using Pickable;
 using UnityEngine;
+using Dialogue;
+using Pickable;
+using Core;
 
 namespace Jigoku.Interaction
 {

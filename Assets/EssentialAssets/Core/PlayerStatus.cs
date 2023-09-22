@@ -32,10 +32,6 @@ namespace Core
         {
             foreach (var inputAction in _inputActions) inputAction.Enable();
         }
-
-        public void PlayerDie()
-        {
-            DisablePlayerControls();
-        }
+        
     }
 }

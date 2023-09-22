@@ -1,7 +1,7 @@
-﻿using Dialogue;
-using UnityEngine;
+﻿using UnityEngine;
+using Dialogue;
 
-namespace Interaction
+namespace Core
 {
     [RequireComponent(typeof(DialogueTrigger))]
     public class ObjectToExamine: MonoBehaviour, IInteractable

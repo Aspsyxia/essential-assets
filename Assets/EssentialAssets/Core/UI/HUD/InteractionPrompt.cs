@@ -1,9 +1,12 @@
-﻿using System;
+﻿using UnityEngine;
+using System;
 using TMPro;
-using UnityEngine;
 
-namespace EssentialAssets.UI
+namespace Core
 {
+    /// <summary>
+    /// Manages HUD element that shows up when interaction is possible
+    /// </summary>
     public class InteractionPrompt: MonoBehaviour
     {
         [SerializeField] private GameObject interactionPromptObject;
@@ -11,8 +14,8 @@ namespace EssentialAssets.UI
         private TMP_Text _promptText;
         private void Start()
         {
-            Interaction.Interaction.InteractionPossible += EnablePrompt;
-            Interaction.Interaction.InteractionStop += ClearPrompt;
+            Interaction.InteractionPossible += EnablePrompt;
+            Interaction.InteractionStop += ClearPrompt;
             
             _promptText = interactionPromptObject.GetComponentInChildren<TMP_Text>();
             ClearPrompt();
