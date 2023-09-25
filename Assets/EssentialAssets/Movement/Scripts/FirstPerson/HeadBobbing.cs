@@ -28,7 +28,7 @@ namespace CameraBehaviour
         private void PerformHeadBob()
         {
             var waveSlice = 0f;
-            var verticalInput = Mathf.Max(0, Input.GetAxis("Vertical"));
+            var verticalInput = Mathf.Max(_player.MoveBackSpeed, Input.GetAxis("Vertical"));
             var currentPosition = transform.localPosition;
 
             if (Mathf.Abs(verticalInput) == 0f)

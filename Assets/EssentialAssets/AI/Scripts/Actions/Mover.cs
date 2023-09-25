@@ -5,8 +5,7 @@ namespace Ai
 {
     public class Mover: MonoBehaviour, IAction
     {
-        [Header("Specification")] 
-        [SerializeField] private float initialSpeed = 2f;
+        [Header("Specification")]
         [SerializeField] private float goalTolerance = 0.5f;
         
         private NavMeshAgent _agent;
@@ -16,7 +15,6 @@ namespace Ai
         {
             _agent = GetComponent<NavMeshAgent>();
             _actionManager = GetComponent<ActionManager>();
-            SetMovementSpeed(initialSpeed);
         }
 
         public void StartMoveAction(Vector3 goal)

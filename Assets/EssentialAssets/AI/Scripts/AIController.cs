@@ -41,6 +41,7 @@ namespace Ai
             if (playerIsTarget) _target = GameObject.FindGameObjectWithTag("Player").GetComponent<CombatTarget>();
 
             _nextWaypoint = path.GetNextWaypoint();
+            _mover.SetMovementSpeed(patrollingSpeed);
             _timeSinceLastChase = suspicionInterval;
             _timeSinceLastMovement = patrollingInterval;
         }
