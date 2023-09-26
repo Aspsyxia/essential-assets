@@ -1,6 +1,6 @@
 using UnityEngine;
 using Dialogue;
-using Pickable;
+using Items;
 using Core;
 
 namespace Jigoku.Interaction
@@ -8,11 +8,11 @@ namespace Jigoku.Interaction
     [RequireComponent(typeof(DialogueTrigger))]
     public class Lock : MonoBehaviour, IInteractable
     {
-        [SerializeField] private Key key;
+        [SerializeField] private KeyItem keyItem;
         
         public void Interact()
         {
-            if (key.IsPicked)
+            if (keyItem.IsPicked)
             {
                 GetComponent<BoxCollider>().enabled = false;
                 GetComponent<DialogueTrigger>().TriggerDialogue(1);

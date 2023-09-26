@@ -22,11 +22,17 @@ namespace Core
             Application.Quit();
         }
 
+        /// <summary>
+        /// Simply takes you to the starting scene.
+        /// </summary>
         public void PlayGame()
         {
             SceneManager.LoadSceneAsync(startingScene);
         }
 
+        /// <summary>
+        /// Makes smooth transition to the next scene using screen fader.
+        /// </summary>
         public void PlayGameTransition()
         {
             SceneTransition.TriggerSceneChange(startingScene);

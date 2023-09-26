@@ -1,7 +1,7 @@
-﻿using System;
+﻿using UnityEngine;
 using System.Collections;
 using Core;
-using UnityEngine;
+
 
 namespace Controls
 {

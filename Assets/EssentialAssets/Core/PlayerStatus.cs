@@ -10,8 +10,6 @@ namespace Core
     /// </summary>
     public class PlayerStatus: MonoBehaviour
     {
-        private List<InputAction> _inputActions;
-
         private void Start()
         {
             SceneTransition.SceneChange += DisablePlayerControls;
@@ -19,18 +17,18 @@ namespace Core
             ObjectTeleport.DoneTeleporting += EnablePlayerControls;
             DialogueManager.DialogueStart += DisablePlayerControls;
             DialogueManager.DialogueEnd += EnablePlayerControls;
-
-            _inputActions = new List<InputAction>(FindObjectsOfType<InputAction>());
         }
 
-        private void DisablePlayerControls()
+        public static void DisablePlayerControls()
         {
-            foreach (var inputAction in _inputActions) inputAction.Disable();
+            var inputActions = new List<InputAction>(FindObjectsOfType<InputAction>());
+            foreach (var inputAction in inputActions) inputAction.Disable();
         }
 
-        private void EnablePlayerControls()
+        public static void EnablePlayerControls()
         {
-            foreach (var inputAction in _inputActions) inputAction.Enable();
+            var inputActions = new List<InputAction>(FindObjectsOfType<InputAction>());
+            foreach (var inputAction in inputActions) inputAction.Enable();
         }
         
     }

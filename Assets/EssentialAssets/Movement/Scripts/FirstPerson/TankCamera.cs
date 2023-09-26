@@ -8,7 +8,6 @@ namespace CameraBehaviour
     {
         [Header("Values"), Min(0)]
         [SerializeField] private float cameraAngleLimit = 80f;
-        [SerializeField] private float mouseSensitivity = 3f;
 
         private float _xRotation;
         private float _yRotation;
@@ -26,8 +25,8 @@ namespace CameraBehaviour
 
         private void MoveCamera()
         {
-            var mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-            var mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+            var mouseX = Input.GetAxis("Mouse X") * Constants.MouseSensitivity;
+            var mouseY = Input.GetAxis("Mouse Y") * Constants.MouseSensitivity;
 
             _xRotation -= mouseY;
             _yRotation += mouseX;

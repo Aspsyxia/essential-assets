@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Inventory
+namespace Items
 {
     public class EquippableItem: MonoBehaviour
     {

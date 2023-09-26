@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
+using System.Collections.Generic;
+using TMPro;
 
 namespace Core
 {
@@ -20,15 +20,16 @@ namespace Core
         [SerializeField] private Slider sensitivitySlider;
 
         [Header("Other")] 
+        [SerializeField] private Toggle fullscreenToggle;
         [SerializeField] private TMP_Dropdown resolutionDropdown;
 
         private static float _brightnessCorrection = 0.9f;
         private ColorGrading _colorGrading;
         private Resolution[] _resolutions;
 
-        private void Start()
+        private void Awake()
         {
-            ResolutionSetup();
+            SavedSettingsSetup();
         }
 
         public void SetAmbienceVolume()
@@ -47,7 +48,7 @@ namespace Core
 
         public void SetFullscreen()
         {
-            Screen.fullScreen = !Screen.fullScreen;
+            Screen.fullScreen = fullscreenToggle.isOn;
         }
 
         public void SetResolution()
@@ -72,8 +73,10 @@ namespace Core
             PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.value);
         }
 
-        public void SavedSettingsSetup()
+        private void SavedSettingsSetup()
         {
+            ResolutionSetup();
+            ScreenSetup();
             BrightnessSetup();
             VolumeSetup();
             SensitivitySetup();
@@ -95,7 +98,12 @@ namespace Core
             
             SetBrightness();
         }
-
+        
+        private void ScreenSetup()
+        {
+            fullscreenToggle.isOn = Screen.fullScreen;
+        }
+        
         private void ResolutionSetup()
         {
             _resolutions = Screen.resolutions;
@@ -104,7 +112,7 @@ namespace Core
 
             foreach (Resolution resolution in _resolutions)
             {
-                var resolutionString = $"{resolution.width}x{resolution.height} {resolution.refreshRate}Hz";
+                var resolutionString = $"{resolution.width}x{resolution.height} {resolution.refreshRateRatio}Hz";
                 resolutionStringList.Add(resolutionString);
             }
             

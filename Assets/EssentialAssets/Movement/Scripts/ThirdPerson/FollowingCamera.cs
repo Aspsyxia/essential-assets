@@ -10,10 +10,7 @@ namespace CameraBehaviour
         [SerializeField] private Transform pivot;
         [SerializeField] private Camera cameraObject;
         [SerializeField] private Vector3 offset;
-
-        [Header("Specification")]
-        [SerializeField] private float speed = 3f;
-
+        
         [Header("Rotation")] 
         [SerializeField][Range(0f, 360f)] private float maxUpRotation = 45f;
         [SerializeField] [Range(0f, 360f)] private float maxDownRotation = 345f;
@@ -53,8 +50,8 @@ namespace CameraBehaviour
 
         private void RotateCamera()
         {
-            var horizontal = Input.GetAxis("Mouse X") * speed;
-            var vertical  = Input.GetAxis("Mouse Y") * speed;
+            var horizontal = Input.GetAxis("Mouse X") * Constants.MouseSensitivity;
+            var vertical  = Input.GetAxis("Mouse Y") * Constants.MouseSensitivity;
             
             target.Rotate(0,horizontal,0);
             pivot.Rotate(-vertical,0,0);

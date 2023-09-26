@@ -1,8 +1,9 @@
+using Core;
 using UnityEngine;
 
-namespace Pickable
+namespace Items
 {
-    public class Pickable : MonoBehaviour
+    public class Pickable : MonoBehaviour, IInteractable
     {
         protected void OnTriggerEnter(Collider other)
         {
@@ -18,6 +19,16 @@ namespace Pickable
         private void HideObject()
         {
             gameObject.SetActive(false);
+        }
+
+        public void Interact()
+        {
+            PickingBehaviour();
+        }
+
+        public KeyCode GetInteractionPrompt()
+        {
+            return KeyCode.E;
         }
     }
 }

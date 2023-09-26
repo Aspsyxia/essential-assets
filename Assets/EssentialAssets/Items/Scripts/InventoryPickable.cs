@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
-using Inventory;
+using InventorySystem;
 
-namespace Pickable
+namespace Items
 {
     public class InventoryPickable: Pickable
     {
-        [SerializeField] private EquippableItem item;
+        [SerializeField] private Item item;
         protected override void PickingBehaviour()
         {
             base.PickingBehaviour();
-            //add to eq
+            FindObjectOfType<Inventory>().AddNewItem(item);
         }
     }
 }

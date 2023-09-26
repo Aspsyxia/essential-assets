@@ -4507,6 +4507,7 @@ MonoBehaviour:
   effectsVolumeSlider: {fileID: 6814790455988935924}
   brightnessSlider: {fileID: 9083275905357678126}
   sensitivitySlider: {fileID: 0}
+  fullscreenToggle: {fileID: 8057214954794181216}
   resolutionDropdown: {fileID: 8057214953712712860}
 --- !u!1 &8057214952982403031
 GameObject:

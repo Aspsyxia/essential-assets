@@ -9,7 +9,7 @@ namespace Core
         /// </summary>
         public void Interact();
         /// <summary>
-        /// Returns Key that triggers interaction.
+        /// Returns KeyItem that triggers interaction.
         /// </summary>
         public KeyCode GetInteractionPrompt();
     }
