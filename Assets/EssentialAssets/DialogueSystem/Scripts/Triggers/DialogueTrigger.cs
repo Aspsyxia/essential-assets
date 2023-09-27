@@ -42,7 +42,7 @@ namespace Dialogue
         
         public void TriggerDialogue(int state)
         {
-            _manager.StartDialogue(dialogue, state);
+            _manager.StartStateDialogue(dialogue, state);
         }
     }
 }

@@ -11,5 +11,10 @@ namespace Items
             base.PickingBehaviour();
             FindObjectOfType<Inventory>().AddNewItem(item);
         }
+
+        public bool IsPicked()
+        {
+            return FindObjectOfType<Inventory>().InventoryItems.Contains(item);
+        }
     }
 }

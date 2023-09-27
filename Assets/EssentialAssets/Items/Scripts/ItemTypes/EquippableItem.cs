@@ -2,19 +2,30 @@
 
 namespace Items
 {
+    [RequireComponent(typeof(Animator), typeof(AudioSource))]
     public class EquippableItem: MonoBehaviour
     {
         [Header("References")] 
         [SerializeField] protected Renderer itemRenderer;
+        
         [Header("Animations")] 
         [SerializeField] protected AnimationClip equipAnimation;
         [SerializeField] protected AnimationClip unEquipAnimation;
-            
-        private bool _isEquipped;
+        
+        [Header("Sound effects")]
+        [SerializeField] private AudioClip useSound;
+        [SerializeField] private AudioClip equipSound;
+        [SerializeField] private AudioClip unEquipSound;
 
+        private Animator _animator;
+        private AudioSource _audioSource;
+        private bool _isEquipped;
+        
         protected virtual void Start()
         {
             UnEquip();
+            _animator = GetComponent<Animator>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         protected virtual void Update()
@@ -31,7 +42,7 @@ namespace Items
             }
         }
 
-        public virtual void Use()
+        protected virtual void Use()
         {
             print($"Used {name}");
         }

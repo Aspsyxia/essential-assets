@@ -21,7 +21,7 @@ namespace Dialogue
             _dialogueContributorsImages = new List<Sprite>(dialogue.contributorsImages);
         }
 
-        public void ChangeCorrespondingImage(int imageIndex)
+        private void ChangeCorrespondingImage(int imageIndex)
         {
             image.sprite = _dialogueContributorsImages[imageIndex];
         }

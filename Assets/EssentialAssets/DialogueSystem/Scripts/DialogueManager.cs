@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using TMPro;
 using UnityEngine;
 
 namespace Dialogue
 {
-    public class DialogueManager : MonoBehaviour
+    public class DialogueManager : CanvasBasedLayout
     {
         [Header("References")]
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text dialogueText;
-        [SerializeField] private Canvas dialogueCanvas;
-        
+
         [Header("Specification")]
         [SerializeField] private float typeSpeedDelay = 0.05f;
         [SerializeField] private bool dialogueWithImages;
         
         private Queue<string> _sentences;
         private List<string> _dialogueContributors;
+        
         private Coroutine _activeCoroutine;
         
         public static event Action DialogueStart;
@@ -30,7 +31,7 @@ namespace Dialogue
         private void Start()
         {
             _sentences = new Queue<string>();
-            dialogueCanvas.enabled = false;
+            ToggleLayout(false);
         }
 
         public void StartDialogue(Dialogue dialogue)
@@ -39,10 +40,10 @@ namespace Dialogue
             _activeCoroutine = StartCoroutine(PrepareDialogueDisplay(dialogue));
         }
         
-        public void StartDialogue(Dialogue dialogue, int state)
+        public void StartStateDialogue(Dialogue dialogue, int state)
         {
             DialoguePreActions(dialogue, true);
-            _activeCoroutine = StartCoroutine(PrepareDialogueDisplay(dialogue, state));
+            _activeCoroutine = StartCoroutine(PrepareStateDialogueDisplay(dialogue, state));
         }
 
         public void StartTip(Dialogue dialogue)
@@ -58,7 +59,7 @@ namespace Dialogue
         {
             if (_activeCoroutine != null) StopAllCoroutines();
             _sentences.Clear();
-            dialogueCanvas.enabled = true;
+            ToggleLayout(true);
             PassDialogue?.Invoke(dialogue);
             if (playerStop) DialogueStart?.Invoke();
         }
@@ -70,7 +71,7 @@ namespace Dialogue
             yield return DisplayDialogue();
         }
         
-        private IEnumerator PrepareDialogueDisplay(Dialogue dialogue, int state)
+        private IEnumerator PrepareStateDialogueDisplay(Dialogue dialogue, int state)
         {
             var sentence = dialogue.sentences[state];
             nameText.text = dialogue.dialogueContributors[0];
@@ -98,7 +99,7 @@ namespace Dialogue
             var sentence = _sentences.Dequeue();
             yield return TypeSentence(sentence);
             yield return new WaitForSeconds(3f);
-            dialogueCanvas.enabled = false;
+            ToggleLayout(false);
         }
 
         private IEnumerator TypeSentence(string sentence)
@@ -109,7 +110,6 @@ namespace Dialogue
             {
                 dialogueText.text += letter;
                 yield return new WaitForSecondsRealtime(typeSpeedDelay);
-                
                 if (!Input.GetKeyDown(KeyCode.Space)) continue;
                 dialogueText.text = sentence;
                 break;
@@ -126,13 +126,19 @@ namespace Dialogue
 
         private void EndDialogue()
         {
-            dialogueCanvas.enabled = false;
+            ToggleLayout(false);
             DialogueEnd?.Invoke();
         }
 
         private static bool DialogueLineSkip()
         {
             return Input.GetKeyDown(KeyCode.E);
+        }
+
+        private void ToggleLayout(bool state)
+        {
+            IsActive = state;
+            layoutCanvas.enabled = state;
         }
     }
 }

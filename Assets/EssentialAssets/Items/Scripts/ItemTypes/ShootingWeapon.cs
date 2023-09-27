@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Items
 {
-    public class ShootingWeapon : EquippableItem
+    public class ShootingWeapon : Weapon
     {
         [Header("References")] [SerializeField]
         private ParticleSystem projectiles;
@@ -25,5 +25,7 @@ namespace Items
                 projectiles.Stop();
             }
         }
+        
+        //not finished
     }
 }

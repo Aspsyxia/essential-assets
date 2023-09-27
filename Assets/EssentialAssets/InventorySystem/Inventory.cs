@@ -2,15 +2,19 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Items;
+using Core;
 
 namespace InventorySystem
 {
-    public class Inventory: MonoBehaviour
+    public class Inventory: InputAction
     {
-        public List<Item> inventoryItems = new();
-        public List<EquippableItem> equippableItems = new();
-        public static event Action<Item> NewItemAdded;
+        public List<Item> initialItems = new();
+        public List<Item> InventoryItems => _inventoryItems;
+        public static event Action NewItemAdded;
+        
         private EquippableItem _currentlyEquipped;
+        private readonly List<Item> _inventoryItems = new();
+        private readonly List<EquippableItem> _equippableItems = new();
         
         private readonly KeyCode[] _keyCodes = {
             KeyCode.Alpha0,
@@ -32,6 +36,7 @@ namespace InventorySystem
 
         private void Update()
         {
+            if (!IsActive) return;
             CheckForInput();
         }
 
@@ -42,45 +47,45 @@ namespace InventorySystem
                 if (Input.GetKeyDown(_keyCodes[i]))
                 {
                     var indexToCheck = i - 1;
-                    if (i <= equippableItems.Count && equippableItems[indexToCheck] != null) SwitchItems(indexToCheck);
+                    if (i <= _equippableItems.Count && _equippableItems[indexToCheck] != null) SwitchItems(indexToCheck);
                 }
             }
         }
 
         private void SwitchItems(int itemIndex)
         {
-            print("passes");
-            
             if (_currentlyEquipped != null) _currentlyEquipped.UnEquip();
 
-            if (_currentlyEquipped == equippableItems[itemIndex])
+            if (_currentlyEquipped == _equippableItems[itemIndex])
             {
                 _currentlyEquipped = null;
             }
             else
             {
-                _currentlyEquipped = equippableItems[itemIndex];
-                equippableItems[itemIndex].Equip();
+                _currentlyEquipped = _equippableItems[itemIndex];
+                _equippableItems[itemIndex].Equip();
             }
         }
 
         public void AddNewItem(Item newItem)
         {
             if (newItem.canBeEquipped)
-            {
+            { 
                 var newItemInstance = Instantiate(newItem.itemPrefab, transform, false);
-                equippableItems.Add(newItemInstance);
+                _equippableItems.Add(newItemInstance);
             }
-            inventoryItems.Add(newItem);
-            NewItemAdded?.Invoke(newItem);
+            _inventoryItems.Add(newItem);
+            NewItemAdded?.Invoke();
         }
-
+        
         private void FetchInitialItems()
         {
-            foreach (var item in inventoryItems)
+            foreach (var item in initialItems)
             {
                 AddNewItem(item);
             }
+            
+            initialItems.Clear();
         }
     }
 }

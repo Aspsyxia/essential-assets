@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 410418383694985950}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6825807341214196975
 MonoBehaviour:
@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d321a8844c3444f840208a1e1a4f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layoutCanvas: {fileID: 410418383694985889}
   nameText: {fileID: 410418382158739600}
   dialogueText: {fileID: 410418382563140180}
-  dialogueCanvas: {fileID: 410418383694985889}
   typeSpeedDelay: 0.02
   dialogueWithImages: 0
 --- !u!1001 &8784616719540607987

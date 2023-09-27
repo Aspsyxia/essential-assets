@@ -12,7 +12,7 @@ namespace Jigoku.Interaction
         
         public void Interact()
         {
-            if (keyItem.IsPicked)
+            if (keyItem.IsPicked())
             {
                 GetComponent<BoxCollider>().enabled = false;
                 GetComponent<DialogueTrigger>().TriggerDialogue(1);
