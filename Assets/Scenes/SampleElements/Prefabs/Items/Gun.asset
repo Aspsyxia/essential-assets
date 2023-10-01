@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0426cb78063855548936867545c54e13, type: 3}
-  m_Name: GenericItem
+  m_Name: Gun
   m_EditorClassIdentifier: 
-  itemName: cos tam
-  itemDescription: dupa dupa
-  itemImage: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
+  itemName: Gun
+  itemDescription: A gun, it shoots, cool :}
+  itemImage: {fileID: 21300000, guid: 7683d40593e3c2a40b06ed3a0866be28, type: 3}
   itemType: 1
   canBeEquipped: 1
-  itemPrefab: {fileID: 5453144880592772206, guid: 048f222d39917004e96e7a227474a195, type: 3}
+  itemPrefab: {fileID: 700238162229366431, guid: 99e61ce504b74ce4a8b8806af00dcab5, type: 3}

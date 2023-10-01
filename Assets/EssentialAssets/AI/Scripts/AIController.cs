@@ -39,8 +39,8 @@ namespace Ai
             _manager = GetComponent<ActionManager>();
             
             if (playerIsTarget) _target = GameObject.FindGameObjectWithTag("Player").GetComponent<CombatTarget>();
-
-            _nextWaypoint = path.GetNextWaypoint();
+            if (path != null) _nextWaypoint = path.GetNextWaypoint();
+            
             _mover.SetMovementSpeed(patrollingSpeed);
             _timeSinceLastChase = suspicionInterval;
             _timeSinceLastMovement = patrollingInterval;
@@ -54,7 +54,11 @@ namespace Ai
 
         private void Update()
         {
-            if (GetComponent<Health>().IsDead) return;
+            if (GetComponent<Health>().IsDead)
+            {
+                _manager.StopCurrentAction();
+                return;
+            }
             if (TargetInRange(_target.gameObject))
             {
                 AttackBehaviour();
@@ -86,17 +90,16 @@ namespace Ai
         private void PatrollingBehaviour()
         {
             _mover.SetMovementSpeed(patrollingSpeed);
-            if (path != null)
-            {
-                if (_mover.ReachedGoal(_nextWaypoint))
-                {
-                    _timeSinceLastMovement = 0f;
-                    path.SwitchWaypoints();
-                }
 
-                _nextWaypoint = path.GetNextWaypoint();
+            if (path == null) return;
+            if (_mover.ReachedGoal(_nextWaypoint))
+            {
+                _timeSinceLastMovement = 0f;
+                path.SwitchWaypoints();
             }
 
+            _nextWaypoint = path.GetNextWaypoint();
+                
             if (_timeSinceLastMovement >= patrollingInterval)
             {
                 _mover.StartMoveAction(_nextWaypoint);

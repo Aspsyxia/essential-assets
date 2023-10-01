@@ -23,7 +23,7 @@ namespace InventorySystem
             inventorySlots = new List<InventorySlot>(GetComponentsInChildren<InventorySlot>());
             layoutCanvas.enabled = false;
             _items = FindObjectOfType<Inventory>().InventoryItems;
-            FetchItems();
+            InventoryCheck();
         }
 
         private void Update()
@@ -46,7 +46,7 @@ namespace InventorySystem
             _freeSlotIndex++;
         }
         
-        private void FetchItems()
+        private void InventoryCheck()
         {
             if (_items.Count == 0)
             {
@@ -57,11 +57,6 @@ namespace InventorySystem
             {
                 itemNameText.text = "None";
                 descriptionText.text = "";
-                
-                foreach (var item in _items)
-                {
-                    UpdateNewSlot();
-                }
             }
         }
     }

@@ -18,7 +18,10 @@ namespace Core
         private void Death()
         {
             IsDead = true;
-            print($"{name} died");
+            foreach (var renderer in GetComponentsInChildren<Renderer>())
+            {
+                renderer.material.color = Color.blue;
+            }
         }
     }
 }

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0426cb78063855548936867545c54e13, type: 3}
-  m_Name: Key
+  m_Name: Bat
   m_EditorClassIdentifier: 
-  itemName: key
-  itemDescription: opens the only locked door here
-  itemImage: {fileID: 21300000, guid: ae53a7884da90e94eb5dfeab594b746c, type: 3}
-  itemType: 0
-  canBeEquipped: 0
-  itemPrefab: {fileID: 0}
+  itemName: Baseball bat
+  itemDescription: A sturdy baseball bat, that can be used as a weapon.
+  itemImage: {fileID: 21300000, guid: 2bc4f0e8f561b5a4c892666bad777ac6, type: 3}
+  itemType: 1
+  canBeEquipped: 1
+  itemPrefab: {fileID: 7345445720005635365, guid: e5a94bba2868c5f49a65f929cc359676, type: 3}

@@ -19,7 +19,7 @@ namespace Ai
 
         public void StopCurrentAction()
         {
-            _currentAction.CancelAction();
+            _currentAction?.CancelAction();
         }
     }
 }

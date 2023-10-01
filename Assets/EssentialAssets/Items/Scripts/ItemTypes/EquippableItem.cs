@@ -1,42 +1,40 @@
-﻿using UnityEngine;
+﻿using Core;
+using UnityEngine;
 
 namespace Items
 {
     [RequireComponent(typeof(Animator), typeof(AudioSource))]
-    public class EquippableItem: MonoBehaviour
+    public class EquippableItem: InputAction
     {
         [Header("References")] 
         [SerializeField] protected Renderer itemRenderer;
         
-        [Header("Animations")] 
-        [SerializeField] protected AnimationClip equipAnimation;
-        [SerializeField] protected AnimationClip unEquipAnimation;
-        
         [Header("Sound effects")]
-        [SerializeField] private AudioClip useSound;
-        [SerializeField] private AudioClip equipSound;
-        [SerializeField] private AudioClip unEquipSound;
+        [SerializeField] protected AudioClip useSound;
+        [SerializeField] protected AudioClip equipSound;
+        [SerializeField] protected AudioClip unEquipSound;
 
-        private Animator _animator;
-        private AudioSource _audioSource;
+        protected Animator Animator;
+        protected AudioSource AudioSource;
         private bool _isEquipped;
         
         protected virtual void Start()
         {
+            Animator = GetComponent<Animator>();
+            AudioSource = GetComponent<AudioSource>();
             UnEquip();
-            _animator = GetComponent<Animator>();
-            _audioSource = GetComponent<AudioSource>();
         }
 
         protected virtual void Update()
         {
+            if (!IsActive) return;
             if (!_isEquipped) return;
             CheckForInput();
         }
 
         protected virtual void CheckForInput()
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 Use();
             }
@@ -44,18 +42,21 @@ namespace Items
 
         protected virtual void Use()
         {
+            Animator.Play("Use");
             print($"Used {name}");
         }
         
         public virtual void Equip()
         {
             itemRenderer.enabled = true;
+            AudioSource.PlayOneShot(equipSound);
             _isEquipped = true;
         }
 
         public virtual void UnEquip()
         {
             itemRenderer.enabled = false;
+            AudioSource.PlayOneShot(unEquipSound);
             _isEquipped = false;
         }
     }
