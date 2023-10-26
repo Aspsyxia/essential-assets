@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Core
+namespace EssentialAssets.Core
 {
     [RequireComponent(typeof(AudioSource))]
 

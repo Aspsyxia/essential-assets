@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Core
+namespace EssentialAssets.Core
 {
     public class SceneTransition: MonoBehaviour
     {
@@ -12,9 +12,15 @@ namespace Core
 
         private void Awake()
         {
-            if (_instance != null) return;
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (_instance != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
         }
 
         public static void TriggerSceneChange(int nextSceneIndex)
@@ -22,12 +28,26 @@ namespace Core
             SceneChange?.Invoke();
             _instance.StartCoroutine(ChangeScene(nextSceneIndex));
         }
+
+        public static void InstantReload()
+        {
+            var sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(sceneIndex);
+            DisableGameplayConstrains();
+        }
         
         private static IEnumerator ChangeScene(int nextSceneIndex)
         {
-            yield return ScreenFader.Instance.ScreenFadeIn();
-            yield return SceneManager.LoadSceneAsync(nextSceneIndex);
             yield return ScreenFader.Instance.ScreenFadeOut();
+            yield return SceneManager.LoadSceneAsync(nextSceneIndex);
+            DisableGameplayConstrains();
+            yield return ScreenFader.Instance.ScreenFadeIn();
+        }
+
+        private static void DisableGameplayConstrains()
+        {
+            // Time.timeScale = 1;
+            // PlayerStatus.EnablePlayerControls();
         }
     }
 }

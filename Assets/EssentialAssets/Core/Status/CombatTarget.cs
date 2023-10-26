@@ -1,13 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Core
+namespace EssentialAssets.Core
 {
     public class CombatTarget: MonoBehaviour
     {
         private void OnParticleCollision(GameObject other)
         {
-            print("got hit by particle");
             GetComponent<Health>().TakeDamage(1);
         }
     }

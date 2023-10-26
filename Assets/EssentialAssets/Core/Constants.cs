@@ -1,4 +1,4 @@
-﻿namespace Core
+﻿namespace EssentialAssets.Core
 {
     public class Constants
     {

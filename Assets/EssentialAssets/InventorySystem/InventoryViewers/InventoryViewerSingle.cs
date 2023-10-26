@@ -2,9 +2,9 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
-using Core;
+using EssentialAssets.Core;
 
-namespace InventorySystem
+namespace EssentialAssets.InventorySystem
 {
     public class InventoryViewerSingle : CanvasBasedLayout
     {
@@ -17,9 +17,9 @@ namespace InventorySystem
         private List<Item> _items;
         private int _currentItemIndex;
 
-        private void Start()
+        private void Awake()
         {
-            Inventory.NewItemAdded += ReplaceItem;
+            FindObjectOfType<Inventory>().NewItemAdded += ReplaceItem;
             layoutCanvas.enabled = false;
             _items = FindObjectOfType<Inventory>().InventoryItems;
             FetchItems();

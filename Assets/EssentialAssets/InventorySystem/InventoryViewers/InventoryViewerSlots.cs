@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Core;
+using EssentialAssets.Core;
 using TMPro;
 
-namespace InventorySystem
+namespace EssentialAssets.InventorySystem
 {
     public class InventoryViewerSlots : CanvasBasedLayout
     {
@@ -17,9 +17,9 @@ namespace InventorySystem
         private List<Item> _items;
         private int _freeSlotIndex;
 
-        private void Start()
+        private void Awake()
         {
-            Inventory.NewItemAdded += UpdateNewSlot;
+            FindObjectOfType<Inventory>().NewItemAdded += UpdateNewSlot;
             inventorySlots = new List<InventorySlot>(GetComponentsInChildren<InventorySlot>());
             layoutCanvas.enabled = false;
             _items = FindObjectOfType<Inventory>().InventoryItems;

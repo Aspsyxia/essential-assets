@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Dialogue
+namespace EssentialAssets.Dialogue
 {
     public class DialogueAreaTrigger : MonoBehaviour
     {

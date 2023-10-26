@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Dialogue;
-using Passages;
+using EssentialAssets.Dialogue;
+using EssentialAssets.Passages;
 using UnityEngine;
 
-namespace Core
+namespace EssentialAssets.Core
 {
     /// <summary>
     /// Class that manages player's current status. It is important for things such as interactions.
@@ -15,8 +15,8 @@ namespace Core
             SceneTransition.SceneChange += DisablePlayerControls;
             ObjectTeleport.Teleporting += DisablePlayerControls;
             ObjectTeleport.DoneTeleporting += EnablePlayerControls;
-            DialogueManager.DialogueStart += DisablePlayerControls;
-            DialogueManager.DialogueEnd += EnablePlayerControls;
+            FindObjectOfType<DialogueManager>().DialogueStart += DisablePlayerControls;
+            FindObjectOfType<DialogueManager>().DialogueEnd += EnablePlayerControls;
         }
 
         public static void DisablePlayerControls()

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Core;
+using EssentialAssets.Core;
 
-namespace Passages
+namespace EssentialAssets.Passages
 {
     public class ScenePortal: MonoBehaviour, IInteractable
     {

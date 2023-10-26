@@ -1,7 +1,7 @@
-﻿using Core;
+﻿using EssentialAssets.Core;
 using UnityEngine;
 
-namespace Items
+namespace EssentialAssets.Items
 {
     [RequireComponent(typeof(Animator), typeof(AudioSource))]
     public class EquippableItem: InputAction

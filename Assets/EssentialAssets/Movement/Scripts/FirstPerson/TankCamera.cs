@@ -1,7 +1,7 @@
-﻿using Core;
+﻿using EssentialAssets.Core;
 using UnityEngine;
 
-namespace CameraBehaviour
+namespace EssentialAssets.CameraBehaviour
 {
     [RequireComponent(typeof(Camera))]
     public class TankCamera : InputAction

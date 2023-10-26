@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Core;
+using EssentialAssets.Core;
 
-namespace Ai
+namespace EssentialAssets.Ai
 {
     public class Fighter: MonoBehaviour, IAction
     {
@@ -10,18 +10,20 @@ namespace Ai
         
         private Health _target;
         private Mover _mover;
+        private Animator _animator;
         private float _timeSinceLastAttack = Mathf.Infinity;
 
         private void Start()
         {
             _mover = GetComponent<Mover>();
+            _animator = GetComponent<Animator>();
         }
 
         private void Update()
         {
             if (!CanAttack(_target)) return;
             _timeSinceLastAttack += Time.deltaTime;
-            
+            FaceTarget();
             if (!InRange())
             {
                 _mover.MoveTo(_target.transform.position);
@@ -40,15 +42,22 @@ namespace Ai
 
         private void Attack()
         {
-            transform.LookAt(_target.transform.position);
             if (_timeSinceLastAttack > attackCooldown)
             {
-                GetComponent<Animator>().SetTrigger("attack");
+                _animator.SetTrigger("attack");
                 _timeSinceLastAttack = 0;
             }
         }
+        
+        private void FaceTarget()
+        {
+            var targetPosition = new Vector3( _target.transform.position.x, 
+                transform.position.y, 
+                _target.transform.position.z ) ;
+            transform.LookAt( targetPosition ) ;
+        }
 
-        public bool CanAttack(Health target)
+        private bool CanAttack(Health target)
         {
             return target != null && !target.IsDead;
         }
@@ -58,22 +67,26 @@ namespace Ai
             return Vector3.Distance(transform.position, _target.transform.position) <= range;
         }
         
-        private void StopAttackAnimation()
-        {
-            GetComponent<Animator>().ResetTrigger("cancelAttack");
-            GetComponent<Animator>().SetTrigger("cancelAttack");
-        }
-
         public void Hit()
         {
             if (_target == null) return;
-            _target.TakeDamage(1); 
+            if (InRange())
+            {
+                print("Taking damage");
+                _target.TakeDamage(1);
+            }
         }
 
         public void CancelAction()
         {
             StopAttackAnimation();
             _target = null;
+        }
+        
+        private void StopAttackAnimation()
+        {
+            _animator.ResetTrigger("cancelAttack");
+            _animator.SetTrigger("cancelAttack");
         }
     }
 }

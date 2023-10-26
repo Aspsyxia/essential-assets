@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
-using Core;
+using EssentialAssets.Core;
 
-namespace Items
+namespace EssentialAssets.Items
 {
     public abstract class Weapon: EquippableItem
     {
         [Header("Raycast")]
-        [SerializeField] protected Transform raycastOrigin; 
+        [SerializeField] protected Transform customRaycastOrigin;
+        [SerializeField] protected bool cameraIsOrigin = true;
 
         [Header("VFX")]
         [SerializeField] protected ParticleSystem attackEffect;
@@ -18,6 +19,13 @@ namespace Items
         [SerializeField] protected float attackCooldown = 0.5f;
         
         protected bool CanAttack = true;
+        private Transform _weaponRaycast;
+
+        protected override void Start()
+        {
+            base.Start();
+            _weaponRaycast = cameraIsOrigin ? GameObject.FindGameObjectWithTag("MainCamera").transform : customRaycastOrigin;
+        }
 
         protected override void Use()
         {
@@ -31,7 +39,7 @@ namespace Items
         
         protected void ProcessRaycast()
         {
-            if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out RaycastHit hit, range))
+            if (Physics.Raycast(_weaponRaycast.position, _weaponRaycast.forward, out var hit, range))
             {  
                 if (hit.collider.TryGetComponent(out CombatTarget target))
                 {
@@ -43,7 +51,7 @@ namespace Items
         
         private void CreateImpact(RaycastHit hit)
         {
-            GameObject effect = Instantiate(hitVFX, hit.point, Quaternion.LookRotation(hit.normal));
+            var effect = Instantiate(hitVFX, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(effect, 0.5f);
         }
     }

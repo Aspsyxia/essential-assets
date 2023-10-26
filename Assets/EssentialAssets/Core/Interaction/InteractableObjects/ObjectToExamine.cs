@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Dialogue;
+using EssentialAssets.Dialogue;
 
-namespace Core
+namespace EssentialAssets.Core
 {
     [RequireComponent(typeof(DialogueTrigger))]
     public class ObjectToExamine: MonoBehaviour, IInteractable

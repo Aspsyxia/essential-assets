@@ -1,7 +1,7 @@
 using UnityEngine;
-using Core;
+using EssentialAssets.Core;
 
-namespace Passages
+namespace EssentialAssets.Passages
 {
     /// <summary>
     /// A type of passage that allows to add specific opening animation.

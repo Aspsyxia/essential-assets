@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Core
+namespace EssentialAssets.Core
 {
     /// <summary>
     /// Allows GameObject with this script attached to interact with other GameObjects using IInteractable interface.
@@ -12,8 +12,8 @@ namespace Core
         [SerializeField] private float interactionRange = 3f;
         [SerializeField] private Transform interactionOrigin;
 
-        public static event Action<string> InteractionPossible;
-        public static event Action InteractionStop;
+        public event Action<string> InteractionPossible;
+        public event Action InteractionStop;
         
         private void Update()
         {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Core
+namespace EssentialAssets.Core
 {
     public class SpawnObject : MonoBehaviour
     {

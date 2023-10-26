@@ -1,4 +1,4 @@
-﻿namespace Ai
+﻿namespace EssentialAssets.Ai
 {
     public interface IAction
     {

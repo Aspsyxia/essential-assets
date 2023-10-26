@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Items
+namespace EssentialAssets.Items
 {
     public class ScorePickable: Pickable
     {

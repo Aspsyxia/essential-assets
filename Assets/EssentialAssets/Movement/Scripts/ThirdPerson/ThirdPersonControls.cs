@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Controls
+namespace EssentialAssets.Controls
 {
     public class ThirdPersonControls : PlayerControls
     {

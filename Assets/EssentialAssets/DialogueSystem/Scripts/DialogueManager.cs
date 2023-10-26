@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Core;
+using EssentialAssets.Core;
 using TMPro;
 using UnityEngine;
 
-namespace Dialogue
+namespace EssentialAssets.Dialogue
 {
     public class DialogueManager : CanvasBasedLayout
     {
@@ -22,11 +22,11 @@ namespace Dialogue
         
         private Coroutine _activeCoroutine;
         
-        public static event Action DialogueStart;
-        public static event Action DialogueEnd;
+        public event Action DialogueStart;
+        public event Action DialogueEnd;
         
-        internal static event Action<Dialogue> PassDialogue;
-        internal static event Action<int> ImageSwitch;
+        internal event Action<Dialogue> PassDialogue;
+        internal event Action<int> ImageSwitch;
 
         private void Start()
         {

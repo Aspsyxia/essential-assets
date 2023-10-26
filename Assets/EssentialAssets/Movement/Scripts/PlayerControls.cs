@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Core;
+using EssentialAssets.Core;
 
 
-namespace Controls
+namespace EssentialAssets.Controls
 {
     [RequireComponent(typeof(CharacterController), typeof(Animator))]
     public class PlayerControls: InputAction

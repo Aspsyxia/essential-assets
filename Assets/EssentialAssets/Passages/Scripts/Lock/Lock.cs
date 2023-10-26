@@ -1,7 +1,7 @@
 using UnityEngine;
-using Dialogue;
-using Items;
-using Core;
+using EssentialAssets.Dialogue;
+using EssentialAssets.Items;
+using EssentialAssets.Core;
 
 namespace Jigoku.Interaction
 {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Items
+namespace EssentialAssets.Items
 {
     public class MeleeWeapon: Weapon
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
-using Core;
+using EssentialAssets.Core;
 
-namespace CameraBehaviour
+namespace EssentialAssets.CameraBehaviour
 {
     [RequireComponent(typeof(Camera))]
     public class StandardCamera : InputAction

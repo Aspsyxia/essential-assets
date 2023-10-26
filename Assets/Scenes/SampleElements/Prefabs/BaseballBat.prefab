@@ -168,7 +168,8 @@ MonoBehaviour:
   useSound: {fileID: 8300000, guid: d47de7c434ce67a4b89c7c0792979303, type: 3}
   equipSound: {fileID: 0}
   unEquipSound: {fileID: 0}
-  raycastOrigin: {fileID: 8872242227133751103}
+  customRaycastOrigin: {fileID: 1892378488398058633}
+  cameraIsOrigin: 1
   attackEffect: {fileID: 0}
   hitVFX: {fileID: 995371012110150506, guid: 3eb6b2205eac1284e8d1a2ba0363f985, type: 3}
   damage: 2

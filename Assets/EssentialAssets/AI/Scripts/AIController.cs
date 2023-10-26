@@ -1,7 +1,7 @@
 using UnityEngine;
-using Core;
+using EssentialAssets.Core;
 
-namespace Ai
+namespace EssentialAssets.Ai
 {
     public class AIController : MonoBehaviour
     {
@@ -27,6 +27,7 @@ namespace Ai
         
         private Fighter _attack;
         private Mover _mover;
+        private Health _health;
         private ActionManager _manager;
         
         private float _timeSinceLastChase;
@@ -36,7 +37,9 @@ namespace Ai
         {
             _attack = GetComponent<Fighter>();
             _mover = GetComponent<Mover>();
+            _health = GetComponent<Health>();
             _manager = GetComponent<ActionManager>();
+            
             
             if (playerIsTarget) _target = GameObject.FindGameObjectWithTag("Player").GetComponent<CombatTarget>();
             if (path != null) _nextWaypoint = path.GetNextWaypoint();
@@ -54,11 +57,7 @@ namespace Ai
 
         private void Update()
         {
-            if (GetComponent<Health>().IsDead)
-            {
-                _manager.StopCurrentAction();
-                return;
-            }
+            if (_health.IsDead) return;
             if (TargetInRange(_target.gameObject))
             {
                 AttackBehaviour();

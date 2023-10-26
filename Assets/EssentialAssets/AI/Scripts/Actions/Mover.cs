@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
-namespace Ai
+namespace EssentialAssets.Ai
 {
     public class Mover: MonoBehaviour, IAction
     {
@@ -15,6 +16,11 @@ namespace Ai
         {
             _agent = GetComponent<NavMeshAgent>();
             _actionManager = GetComponent<ActionManager>();
+        }
+
+        private void Update()
+        {
+            UpdateMoveAnimation();
         }
 
         public void StartMoveAction(Vector3 goal)
@@ -37,6 +43,14 @@ namespace Ai
         public void SetMovementSpeed(float newSpeed)
         {
             _agent.speed = newSpeed;
+        }
+        
+        private void UpdateMoveAnimation()
+        {
+            var velocity = GetComponent<NavMeshAgent>().velocity;
+            var localVelocity = transform.InverseTransformDirection(velocity);
+            var speed = localVelocity.z;
+            GetComponent<Animator>().SetFloat("forwardSpeed", speed);
         }
 
         public void CancelAction()

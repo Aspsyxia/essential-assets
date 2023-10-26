@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core
+namespace EssentialAssets.Core
 {
     [RequireComponent(typeof(SpawnObject))]
     public class ActivatingObject: ObjectToExamine

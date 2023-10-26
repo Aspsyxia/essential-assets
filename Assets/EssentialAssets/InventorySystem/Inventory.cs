@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
-using Items;
-using Core;
+using EssentialAssets.Items;
+using EssentialAssets.Core;
 
-namespace InventorySystem
+namespace EssentialAssets.InventorySystem
 {
     public class Inventory: InputAction
     {
         public List<Item> initialItems = new();
         public List<Item> InventoryItems => _inventoryItems;
-        public static event Action NewItemAdded;
+        public event Action NewItemAdded;
         
         private EquippableItem _currentlyEquipped;
         private readonly List<Item> _inventoryItems = new();

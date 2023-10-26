@@ -1,8 +1,8 @@
-using Controls;
-using Core;
+using EssentialAssets.Controls;
+using EssentialAssets.Core;
 using UnityEngine;
 
-namespace CameraBehaviour
+namespace EssentialAssets.CameraBehaviour
 {
     [RequireComponent(typeof(Camera))]
     public class HeadBobbing : InputAction

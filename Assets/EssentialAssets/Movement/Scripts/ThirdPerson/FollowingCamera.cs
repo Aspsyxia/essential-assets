@@ -1,7 +1,7 @@
-﻿using Core;
+﻿using EssentialAssets.Core;
 using UnityEngine;
 
-namespace CameraBehaviour
+namespace EssentialAssets.CameraBehaviour
 {
     public class FollowingCamera : InputAction
     {

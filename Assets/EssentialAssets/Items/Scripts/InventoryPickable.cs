@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using InventorySystem;
+using EssentialAssets.InventorySystem;
 
-namespace Items
+namespace EssentialAssets.Items
 {
     public class InventoryPickable: Pickable
     {

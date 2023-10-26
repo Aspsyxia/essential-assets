@@ -1,9 +1,9 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using Core;
+using EssentialAssets.Core;
 
-namespace Passages
+namespace EssentialAssets.Passages
 {
     public class ObjectTeleport : MonoBehaviour, IInteractable
     {
@@ -23,9 +23,9 @@ namespace Passages
         public IEnumerator Teleport(GameObject objectToTeleport)
         {
             Teleporting?.Invoke();
-            yield return ScreenFader.Instance.ScreenFadeIn();
-            objectToTeleport.transform.position = destination.position;
             yield return ScreenFader.Instance.ScreenFadeOut();
+            objectToTeleport.transform.position = destination.position;
+            yield return ScreenFader.Instance.ScreenFadeIn();
             DoneTeleporting?.Invoke();
         }
 

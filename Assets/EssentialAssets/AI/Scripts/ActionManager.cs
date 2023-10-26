@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ai
+namespace EssentialAssets.Ai
 {
     public class ActionManager: MonoBehaviour
     {

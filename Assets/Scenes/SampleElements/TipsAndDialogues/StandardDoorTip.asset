@@ -17,4 +17,4 @@ MonoBehaviour:
   contributorsImages:
   - {fileID: 21300000, guid: 91976e8b9ce0f0341838727acd55621c, type: 3}
   sentences:
-  - Those are standard, wing door in front of youen them.
+  - Those are standard, wing door in front of you, interacting will open them.

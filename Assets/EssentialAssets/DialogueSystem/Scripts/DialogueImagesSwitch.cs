@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Dialogue
+namespace EssentialAssets.Dialogue
 {
     public class DialogueImagesSwitch : MonoBehaviour
     {
@@ -12,8 +12,8 @@ namespace Dialogue
 
         private void Start()
         {
-            DialogueManager.PassDialogue += LoadImages;
-            DialogueManager.ImageSwitch += ChangeCorrespondingImage;
+            FindObjectOfType<DialogueManager>().PassDialogue += LoadImages;
+            FindObjectOfType<DialogueManager>().ImageSwitch += ChangeCorrespondingImage;
         }
 
         private void LoadImages(Dialogue dialogue)

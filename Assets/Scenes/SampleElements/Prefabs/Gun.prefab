@@ -106,7 +106,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -169,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 15
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -3684,7 +3684,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3737,7 +3737,7 @@ ParticleSystem:
     m_EnergyLossOnCollision:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3792,7 +3792,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 1
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -4997,7 +4997,8 @@ MonoBehaviour:
   useSound: {fileID: 8300000, guid: d47de7c434ce67a4b89c7c0792979303, type: 3}
   equipSound: {fileID: 0}
   unEquipSound: {fileID: 0}
-  raycastOrigin: {fileID: 5688261748900127680}
+  customRaycastOrigin: {fileID: 4767108198843760015}
+  cameraIsOrigin: 1
   attackEffect: {fileID: 0}
   hitVFX: {fileID: 995371012110150506, guid: 3eb6b2205eac1284e8d1a2ba0363f985, type: 3}
   damage: 2

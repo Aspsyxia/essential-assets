@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core
+namespace EssentialAssets.Core
 {
     /// <summary>
     /// Allows to smoothly show or hide UI image objects.

@@ -5,7 +5,7 @@ using UnityEngine.Rendering.PostProcessing;
 using System.Collections.Generic;
 using TMPro;
 
-namespace Core
+namespace EssentialAssets.Core
 {
     public class OptionsMenu: MonoBehaviour
     {
@@ -24,6 +24,8 @@ namespace Core
         [SerializeField] private TMP_Dropdown resolutionDropdown;
 
         private static float _brightnessCorrection = 0.9f;
+        private static PostProcessVolume _postProcessVolumeInstance; //to do
+        
         private ColorGrading _colorGrading;
         private Resolution[] _resolutions;
 
@@ -93,7 +95,7 @@ namespace Core
 
         private void BrightnessSetup()
         {
-            _colorGrading = GameObject.FindGameObjectWithTag("Post Processing").GetComponent<PostProcessVolume>().profile.GetSetting<ColorGrading>();
+            _colorGrading = FindObjectOfType<PostProcessVolume>().profile.GetSetting<ColorGrading>();
             brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", 0.9f);
             
             SetBrightness();

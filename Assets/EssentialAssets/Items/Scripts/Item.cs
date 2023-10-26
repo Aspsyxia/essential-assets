@@ -1,5 +1,5 @@
-using InventorySystem;
-using Items;
+using EssentialAssets.InventorySystem;
+using EssentialAssets.Items;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Item", menuName = "Items", order = 1)]

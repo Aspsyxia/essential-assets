@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core
+namespace EssentialAssets.Core
 {
     /// <summary>
     /// Marks all MonoBehaviours that take player input.

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Core;
+using EssentialAssets.Core;
 
-namespace Dialogue
+namespace EssentialAssets.Dialogue
 {
     public class DialogueTrigger : MonoBehaviour
     {

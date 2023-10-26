@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace InventorySystem
+namespace EssentialAssets.InventorySystem
 {
     public class InventorySlot: MonoBehaviour
     {

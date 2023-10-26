@@ -1,4 +1,4 @@
-﻿namespace Items
+﻿namespace EssentialAssets.Items
 {
     public enum ItemType
     {
