@@ -80,6 +80,8 @@ namespace EssentialAssets.Passages
         private IEnumerator RotateToOpen()
         {
             _isOpen = true;
+            _doorAngles.y = Mathf.Abs(_doorAngles.y);
+            
             while (_doorAngles.y < _finalAngle)
             {
                 _doorAngles.y += openingSpeed;
@@ -91,6 +93,8 @@ namespace EssentialAssets.Passages
         private IEnumerator RotateToClose()
         {
             _isOpen = false;
+            _doorAngles.y = Mathf.Abs(_doorAngles.y);
+            
             while (_doorAngles.y > _startAngle)
             {
                 _doorAngles.y -= openingSpeed;

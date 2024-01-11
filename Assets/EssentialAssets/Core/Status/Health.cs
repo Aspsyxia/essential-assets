@@ -8,9 +8,16 @@ namespace EssentialAssets.Core
     {
         [SerializeField] private int healthPoints = 5;
 
-        public event Action PlayerDeath;
+        private ActionManager manager;
         
+        public event Action PlayerDeath;
+
         public bool IsDead { get; private set; }
+
+        private void Awake()
+        {
+            manager = GetComponent<ActionManager>();
+        }
 
         public void TakeDamage(int damageAmount)
         {
@@ -24,7 +31,7 @@ namespace EssentialAssets.Core
             IsDead = true;
             
             if (CompareTag("Player")) PlayerDeath?.Invoke();
-            else GetComponent<ActionManager>().StopCurrentAction();
+            else manager.StopCurrentAction();
             
             if (TryGetComponent(out Collider collider)) collider.enabled = false;
             GetComponent<Animator>().SetTrigger("death");

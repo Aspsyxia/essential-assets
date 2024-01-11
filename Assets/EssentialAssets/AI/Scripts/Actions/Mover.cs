@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 namespace EssentialAssets.Ai
@@ -11,11 +10,13 @@ namespace EssentialAssets.Ai
         
         private NavMeshAgent _agent;
         private ActionManager _actionManager;
+        private Animator _animator;
 
         private void Start()
         {
             _agent = GetComponent<NavMeshAgent>();
             _actionManager = GetComponent<ActionManager>();
+            _animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -47,10 +48,9 @@ namespace EssentialAssets.Ai
         
         private void UpdateMoveAnimation()
         {
-            var velocity = GetComponent<NavMeshAgent>().velocity;
-            var localVelocity = transform.InverseTransformDirection(velocity);
+            var localVelocity = transform.InverseTransformDirection(_agent.velocity);
             var speed = localVelocity.z;
-            GetComponent<Animator>().SetFloat("forwardSpeed", speed);
+            _animator.SetFloat("forwardSpeed", speed);
         }
 
         public void CancelAction()

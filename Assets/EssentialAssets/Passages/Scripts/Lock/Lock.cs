@@ -1,25 +1,33 @@
+using System;
 using UnityEngine;
 using EssentialAssets.Dialogue;
 using EssentialAssets.Items;
 using EssentialAssets.Core;
 
-namespace Jigoku.Interaction
+namespace EssentialAssets.Interaction
 {
     [RequireComponent(typeof(DialogueTrigger))]
     public class Lock : MonoBehaviour, IInteractable
     {
         [SerializeField] private KeyItem keyItem;
-        
+
+        private DialogueTrigger _dialogueTrigger;
+
+        private void Awake()
+        {
+            _dialogueTrigger = GetComponent<DialogueTrigger>();
+        }
+
         public void Interact()
         {
             if (keyItem.IsPicked())
             {
                 GetComponent<BoxCollider>().enabled = false;
-                GetComponent<DialogueTrigger>().TriggerDialogue(1);
+                _dialogueTrigger.TriggerDialogue(1);
             }
             else
             {
-                GetComponent<DialogueTrigger>().TriggerDialogue(0);
+                _dialogueTrigger.TriggerDialogue(0);
             }
         }
 
