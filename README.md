@@ -1,7 +1,6 @@
 ## Essential Assets
 
-A work in progress project that contains all basic assets that I often re-use in game projects I work on. You will find there a ready to go
-player controllers for FPS games, sample menu with settings, interaction, dialogue and inventory systems and more.
+This work-in-progress project comprises essential assets I frequently use in my game projects, adventure games for the most part. It includes player controllers for first-person perspective games, a sample menu featuring settings, as well as interaction, dialogue, and inventory systems, among other functionalities.
 
 
 </div>
@@ -16,8 +15,9 @@ All of them are created by me, but I often used some internet tutorials, so I th
 
 ### To do
 
-- Project structure for more "drag and drop" usage
-- Refactoring to do in terms of dependencies
+- More refactoring to do in terms of dependencies
 - More reliable TPP controller
-- Brightness setting
+- Brightness settings
 - More modular inventory system as well as ability to equip items from inventory screen, not only view them
+- Removing objects from inventory
+- Implement design patterns for player controller and other elements
